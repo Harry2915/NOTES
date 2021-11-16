@@ -69,9 +69,18 @@ i.e ANGULAR GENERATE SERVICE NAMEOFSERVICE
 ==================================================================================	
 ////Directives	
 	
-	
-	
-	
+========================================================
+how to connect angular with REST API 
+
+
+First Add the HttpClientModule in app.module.ts
+then create one service and inject HttpClient object into the constructor
+then create method which will return the appropriate object 
+and call the api with the help of HttpClient object
+eg myHttp.get("http://localhost:8080/users/{id}") 
+and store the data in object
+
+=============================================================
 	
 	
 	
