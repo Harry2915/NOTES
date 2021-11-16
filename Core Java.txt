@@ -1,0 +1,266 @@
+JAVA:
+1.J2SE-desktop based application
+2.J2EE-web based application advance java
+3.J2SE-mobile application
+
+OAK-Java-James Gosling-Project green--WORA
+
+JDK 8/1.8
+eclipse for J2EE
+
+----------------------------------------------------------------------------------------------
+-J2SE
+----------------------------------------------------------------------------------------------
+OPPS
+
+1)Abstraction : it is process or mechanism of identifying the key aspect [important attributes] of an object 
+and ignoring rest of object with respect to given problem domain
+
+2)encapsulation : it is process or mechanism of wrapping up of data along with its member function into a 
+single unit is called encapsulation
+-through encapsulation we can achive privacy
+-through encapsulation we can hide implementation details of an object by providing public interface.
+
+
+# Object
+- anything in world which has fix shape or form
+- it can be tangible or intangible or conceptal
+object has following feature :
+- state : state of object indicates current values of all the attributes[including static and dynamic
+ attributes] of an object
+
+# behaviour 
+- the way how object acts or reacts in terms of its state changes
+it is process or mechanism of
+
+# identity
+- through identity we can recognize object uniquely among multiple object
+- identity can be a single attribute or multiple attributes
+
+# responsibility
+- the role served by an object within a system
+
+- file name is not case sensitive but class name is case sensitive
+- there is no concept of garbage value in java
+- local variable in java must be initalize before use
+
+# Type of variable 
+- instance variable (non-static variable)
+- static variable (class scope variable)
+- local variable (method scope variable)
+
+# instance variable :
+	for these variable copy will be created (memory will be allocated)
+	on the basis of "one per object".
+
+# static variable :
+	for these variable copy will be created (memory will be allocated)
+	on the basis of "one per class".
+	
+# local variable :
+	for these variable copy will be created (memory will be allocated)
+	on the basis of "one per method call".
+# this keyword :
+	it is a keyword in java which points to current class object
+--uses of keyword
+- whenever local variable and global variable names are same, to point to the global variable 
+  we can use this keyword
+- we can use this keyword to call constructor of the same class
+- this keyword will point to current class object
+
+
+# constructor 
+- special type of method which used to intialize object
+- does not have any return type not even void
+- constructor invoke at the
+- constructor name should be same as class name
+- constructor can be overloaded
+- constructor get call implicitly whenever we are creating object
+# puroose of constructor
+- to initialize a object/data member
+
+whenever we have not written any constructor inside our class explicitly the we will get default constructor from java class
+if we define any constructor in our class we will not get default constructor from java compiler
+
+#package 
+- is a java keyword
+- package is nothing but a collection of related classes as well as interfaces
+- packges can be categorize in two way 
+user define package 
+pre define package
+
+- java package is used to categorise or to classify  classes as well as interfaces for better maintanace
+- by using java package we can avoid naming conflict 
+- provides access protection
+note: 
+- package statement must be the first statement of java file
+- while creating packages we need to follow reverse domain name convention
+- javac -d . Test.java // . refer to current working directory
+- java com.volkswage.Test 
+- import static com.demo.Test.task1; // dont need to write class name again and again to call static method/variable 
+- import static java.lang.System.out;
+
+# Containment : [has a relationship]
+one object contains another object as a part of its attribute
+is called as containment.
+
+# method overloading/function overloading
+- can be implemented by changing method signature
+- method signature includes:
+1.no of parameter
+2.data type of parameter
+3.sequence of parameter
+
+Note:
+- Method signature does not include return type of method
+
+# static block
+- static block gets executed even before main method.
+- we can use static block to execute the only once that to before main logic
+- we can write database connection code publication information...etc in static block
+
+Note:we can have (can write) multiple static blocks inside a java class then
+sequence of execution of these static blocks in depend upon their sequence of their defination
+
+Access specifires/modifires :
+private : 
+default :
+protected :
+public :
+Note : if we have not mentioned any access specifire in front of variable/member then that member is having default
+access specifire
+
+default :
+if the member is having default scope then that member is accessible outside the class
+but only within the same package.
+
+protected :
+if the member is having protected scope then that member is accessible outside the class as well as
+outside packge but only within sub-class
+
+object class is also called as Cosmic super class
+
+//RTT -> Run time identification
+if(e instanceof SalesPerson) [to check e is of type SalesPerson] // return true if e is of type salesPerson else false
+
+//LHS -> Employee e -> Reference of super/Employee type - static type[remain fix]
+//RHS -> new SalesPerson()-> Object of subclass/SalesPerson type -dynamic type[can change at run time]
+
+
+/* Compile Time Checking
+* check method is present in a LHS type/super type/Employee
+* i] No : Compile Time Error
+*
+* ii] YES :
+* Run Time checking
+* check method is present in a RHS type/sub type/SalesPerson
+* a)YES : method is called from RHS type/sub type/SalesPerson
+* b)NO : method is called from LHS type/super type/Employee
+*/
+- every method of final class is final
+
+
+# Interface 
+- every method in interface is public and abstract
+Marker Interface -> without any method -> used for permission or to check object instance 
+SAM single abstract method->functional interface ->
+Normal Interface
+with the help of default we can define method inside interface
+
+# Error
+syntax error
+logical
+run time error
+
+# Automatic resource management:
+try(FileReader fr = new FileReader(new File("C:\\demofile.txt")))
+no need to write finally block
+
+
+# comparable vs comparator 
+
+sort method takes input which is comparable 
+
+we need to implement camparable interface and define method compareTo(T type)
+
+class toy implement comparable<Laptop>
+
+public int compareTo(Laptop lp2)
+{
+both object are same then return 0
+1st obje is greater than second object then return positive number
+1st obje is less than second object then return negative number
+}
+
+
+comparator :
+Collections.sort(list,comparator_obj);
+
+Comparator<Laptop> com = new Comparator<Laptop>()
+{
+	public int compare(Laptop l1,Laptop l1)
+	{
+	both object are same then return 0
+	1st obje is greater than second object then return positive number
+	1st obje is less than second object then return negative number
+	}
+};
+// annonymous inner class
+
+java uses TimSort algorithm
+#Generic 
+public class DemoBounded<T extends Number> 
+
+
+#Reflection API
+
+
+
+
+Product class
+proid
+name
+price
+set<sizes> S M L XL
+
+Book 
+isbn
+title
+price
+Set<String> Authors
+
+getter setter parametrised constructor
+
+Collection class
+dislplay the list
+sort -2 criteria 
+
+
+
+reflection
+anotation
+inner classes
+
+
+
+
+
+if(e.getKey().getName().equals(movie.getName()))	
+			{
+				for(Seat seat:e.getValue())
+				{
+					
+					if(seat.getRowName().equals(toBeBooked.getRowName()) && seat.getSeatNumber()==toBeBooked.getSeatNumber())
+					{
+						Seat seat2 = ticketBooked.get(movie.getName());
+						
+					}
+				}
+			}
+
+
+2 java class
+list iterate add some element 
+
+list 1 thread add
+2 thread read 

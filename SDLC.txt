@@ -1,0 +1,80 @@
+Water fall model
+ Requirement analysis
+ design
+ code
+ test
+ deploy
+ maintain
+make changes is very dificult
+
+philosiphy
+Agile: menifesto
+4 values and 12 principle
+VALUES:
+Individuals and interactions over processes and tools
+Working software over comprehensive documentation
+Customer collaboration over contract negotiation
+Responding to change over following a plan
+
+PRINCIPLE:
+
+scrum
+kanban
+xp
+
+what is scrum ? [ its better way to build a product ]
+scrum is framework using which we can implement a agile
+lightweight
+simple to understand
+but dificult to master
+
+sprint = it one two or three week time span where we deliver a product
+product backlog = all the requirement [ it not a fixed we can add requirement ]
+we take some requirement backlog and it is called as [current sprint backlog]
+scrum team [4-8 people] will work on product [ and we will give first increament [potentially shippable product]
+remaining backlog in next sprint
+sprint retrospective model
+1] what worked well
+2] what could be improved
+3] what will we commit to doing in next sprint
+
+we will take some requirement from product backlog
+ 
+product backlog
+sprint backlog
+increment
+
+product owner [ client ]
+scrum master  [ manage scrum [standup meet retrospective] ]
+
+scrum board [ what is the progress of project ] 
+
+key concepts:
+user story
+epic :series user story
+themes : 
+MVP [minimum viable product]
+Burn Down Charts : chart for [ work done and remaining ]
+
+pillars of scrum
+Transparency
+inspection
+adaption
+
+Scrum component
+scrum team :
+product owner
+scrum master
+
+scrum artifacts:
+product backlogs
+sprint backlogs
+increments
+
+
+KANBAN:
+kan = card
+ban = signal
+
+it visualizes the workflow to achieve process improvement
+kanban board : not started in progress done

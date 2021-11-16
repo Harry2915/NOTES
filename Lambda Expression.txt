@@ -1,0 +1,34 @@
+# Lambda
+- this was introduced in jdk 1.8 
+- this feature has changed paradigmed programming in java world 
+- this was introduced to support functional programming 
+- this is one of the most important and popular feature after 1.8  all modern development is done using this feature 
+  also all new version of all the framework uses this feature (spring version 5.0 and above is implemented using jdk 1.8)
+
+# what are lambdas?
+- lambda expression are anonymous function
+- they don't have any name or identifires
+- they can be passes as parameters to another function
+- lambda expression exist outside any object scope 
+
+# how lambda Looks?
+	1] ()-> { statement/statements };
+	2] ()-> statement
+	3] (parameter)-> statement // if you are specifying data type then writing () is mandate 
+	4] parameter-> statement // (parameter)-> statement
+	5] parameter ->{return "hello";}
+	6] parameter ->"hello"; // if you are not specifying {] then you must not specify return statement
+
+
+
+# functional interface 
+- is any interface which has only one abstract method 
+- this term was introduce in jdk 1.8 
+- you can use only functional interfaces to create lambda expression
+- you can optionaly anotate functional interface with @FunctionalInterface
+- though it is not mandate to anotate with functional interface but it is recommended as it would catch the errors at interface design time 
+  which would avoid run time issues 
+
+ # Type Inference 
+type inference is done by java compiler to identify the data type of argument and return value in lambda expression
+

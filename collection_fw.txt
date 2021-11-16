@@ -1,0 +1,268 @@
+									Collection F/W  (java.util.*)
+								      =================================
+
+=> Array Disadvantages : 
+=============================
+1) it holds Same Type Elements
+2) Array Size is Fixed In Nature 
+3) memory wise Array is Worst 
+
+=> Why To use Collection :
+=========================
+
+1) It holds Diffrents Types Of Elements In The Form Object 
+2) Size is Growable i.e We can Remove / Add Elements At Run Time 
+3) Memory wise/ Performance Wise Collection is The Best 
+
+============================================================== 
+
+
+==> Collection Interface :
+=====================
+
+=> if we want to represent a group of Individual objects as a single Entity then we should go for Collection 
+
+=> Collection interface is considered as root interface of Collection Framework 
+
+=> it defines a most common methods which are applicable for any collection object
+
+  Ex: boolean add(object o) , boolean addAll(Collection c),boolean remove(object o), boolean removeAll(Collection c), void clear()
+
+NOTE: collection interface doesn't contain any method to retrive the obect there is no any concrete class which impliments collection interface directly
+
+
+===> List Interface
+========================
+1) It is a child interface of Collection.
+
+2) if we want to repressent a group of individual objects as a single entity where duplicates are allowded and insertion order must be preserved then
+	we shoud go for the list 
+
+3) we can preserve insertion order by using index, hence index plays very important role in List Interface 
+
+Methods: void add(int index,Object o), boolean addAll(int index,Collection c), Object get(int index) 
+         Object remove(int index), Object set(int index,Object o)
+
+================================================================
+
+ArrayList: 
+============
+		1) underline Datastructure for ArrayList Is Resizable Array or Growable Array
+
+		2) Duplicates Are Allowded
+
+		3) Insertion Order Is preserved
+
+		4) Hetrogenious Objects are Allowded 	
+			
+			NOTE = [except TreeSet and TreeMap every where hetrogenious objects are allowded]
+
+		5) Null insertion is Possible 
+
+
+==> Usually We Can Use Collections To Hold And Transfer Objects From One Place To Another Place , To Provide Support For This
+    Requirement Every Collection Allready impliments Serializable and Colonable Interface
+
+==> Array List And Vector Classes Implements RandomAccess interface So That We Can Access Any Random Element With The Same Speed
+
+===> Hence If Our Requirement Is If Frequent Operation is Retrival Operation Then ArrayList Is The Best Choice Because it Implements RandomAccess Interface
+
+===> ArrayList is The Worst Choice If our Frequest Operation Is Insertion Or deletion In The Middle (Because Sevral Shift operation Get Performed internally)
+
+
+2) LinkedList
+==================
+
+	1) The Underlying Data Structure Is Double Linked List
+
+	2) Insertion Order Is Preserved 
+
+        3) Duplicates Are Allowded 
+
+        4) Heterogenious Objects are Allowded 
+
+        5) Null insertion is Possible  
+
+==> LinkedList Implements Serializable and Colonable Interface but not Random Access Interface 
+
+==> It is Best Choice If our Frequent Operation Is Insertion And Deletion in middle 
+
+==> It is Worst Choice If Our Frequesnt Operation is retrival Operation 
+
+
+====> usually we use LinkedList To implement stack and Queue to provide support for this linked list defines following specific methods
+
+
+	1) void addFirst()
+	2) void addLast()
+	3) Object getFirst()
+	4) Object getLast()
+	5) Object removeFirst()
+	6) Object removeLast()
+
+
+==> Vector : 
+=================
+		1) underline Datastructure for ArrayList Is Resizable Array or Growable Array
+
+       		2) Duplicates Are Allowded
+
+		3) Insertion Order Is preserved
+
+		4) Hetrogenious Objects are Allowded 	
+			
+			NOTE = [except TreeSet and TreeMap every where hetrogenious objects are allowded]
+
+		5) Null insertion is Possible 
+	
+==> Vector Classes Implements RandomAccess interface So That We Can Access Any Random Element With The Same Speed
+
+==> Most Of the methods In Vector Are Syncronized Hence Vector Object Is Thread Safe 
+
+==> Best Choice If The Frequent Operation Is Retrival operation 
+
+===> initial capacity of Vector : 10 
+
+                         vectorCapacity = CurrentCapacity * 2 // 10*2 = 20
+
+===================
+==> stack => It works On Last in First Out Principel  (LIFO)
+
+		1) Duplicates Are Allowded
+
+		2) Insertion Order Is preserved
+
+		3) Hetrogenious Objects are Allowded 	
+			
+			NOTE = [except TreeSet and TreeMap every where hetrogenious objects are allowded]
+
+		4) Null insertion is Possible 
+
+Methods : 
+	1) push() : To add Element In Stack
+	2) pop() : It Removes Top of The Element From Stack
+	3) peek() : It returns Top Of The Stack Element Ir Does Not Remove Element From The Stack 
+	4) search() : It returns The Distance Searching element from the top of the stack which starts from 1 if element not available in stack it returns -1
+====================
+
+Set => 
+	1) It is child interface of collection 
+	2) if we want to represent a group of individual objects as a single entity, where duplicates are not allowded and insertion order is not preserved
+	   then we should go for the set 
+
+	3) it doesn,t contain any new methods so we have to use only collection interface methods.
+
+
+Hashset => 
+============
+	1) underlying data structure Is Hashtable 
+	2) Duplicates are not allowded , if we are trying To  Insert duplicate , we wont get any compilation or runtime error, add() method just returns False
+        3) Insertion order is not preserved and all object inserted based on hashcode of object 
+        4) heterogenious objects are alloweded 
+        5) null insertion is possible
+        6) it impliments clonable and serializable interface but not RandomAccess Interface 
+        7) It is best Choice if our frequent operation is Search Operation  
+
+LinkedHashSet = > 
+==================
+	1) Duplicates are not allowded , if we are trying To  Insert duplicate , we wont get any compilation or runtime error, add() method just returns False
+	2) Insertion order is Preserved 
+	3) heterogenious objects are alloweded 
+	4) null insertion is possible
+	5) it impliments clonable and serializable interface but not RandomAccess Interface 
+	6) Best Choice For frequently perform insertion and deletion in the middle 	
+
+
+TreeSet : 
+==========
+	1) Underlying datastructure for TreeSet Is Balanced Tree
+
+	2) Duplicates Are Not Alloweded 
+
+	3) Insertion Order Not Preserved, But Objects Will Be Inserted According To Some Sorting Order 
+
+	4) Hetrogenious Objects are Not allowded , If we are trying To insert Then We will get Run time Exception Saying ClassCastException
+
+	5) Null insertion is not allowed You will get java.lang.NullPointerException
+
+ 
+Queue :    It Works On First In First Out 
+====== 
+		1) Duplicates Are Allowded
+
+		2) Heterogenioous objects are not allowded 
+
+		3) Insertion Order Is Preserved 
+
+                4) Null insertion is not allowded 
+
+Methods : 
+            1) boolean offer(Object o):
+			To add Object Into the Queue 
+            2) object peek()
+			To return head element Of the Queue, if queue is Empty this method returns null 
+	    3) Object element()
+			To return head element Of the Queue, if queue is Empty this method returns RE : NoSuchElementException  
+	    4) Object poll() :
+			To Remove and return head element of the Queue, if queue is empty this method returns null 	
+	    5) object Remove():
+			To Remove and return head element of the Queue, if queue is empty this method returns RE : NoSuchElementException 	  	
+
+
+      
+*** 1) What is Diffrence Between Collection and Collections ?
+	
+	=> Collecttion is an Interface Which can be used To represent a group
+	   of individual object as a single Entity
+
+        => Collections is a utility class Present in java.util Package To define sevral Utility methods (like Searching , sorting ) for collection objects 
+
+
+======================================================================================================================================================================
+
+Map : => if we want to represent a group of Individual objects in key value pair as a single Entity then we should go for Map
+
+1) HashMap : 
+============
+		1) It Allows To Store Duplicate Values , but not allowed duplicate key if duplicate key is available
+		   it does not lead to any error but put method returns false
+
+		2) It does not preserves Insertion Order 
+		3) It Allows To Store Heterogenious Values as well it get allowed heterogenious keys
+		4) It Allows Null Insertion As a Value as well null as key 
+
+2) LinkedHashMap : 
+===================
+
+		1) It contains The Value Based On key 
+		2) It Does Not Allowed Duplicates Key but allowed duplicate Value
+		3) It allowes one null key and multiple null as values
+		4) It preeserve Insertion Order 
+		5) It allowed To store Hetrogenious Vales 
+
+3) TreeMap : 
+============= 
+		1) It Contains Values Based On The Key and value Pair (Entry).
+		2) It contains only unique Elements . Does Not Allow Duplicate Key
+		3) It can not null as a key 
+		4) it allows Multiple null as a value 
+		5) It maintain ascending order on the basis of key
+
+		6) hetrogenious keys are not allowded but alloweded heterogenious values
+
+
+
+
+
+    
+
+
+
+
+	
+
+
+
+
+
+ 

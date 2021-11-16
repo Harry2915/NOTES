@@ -1,0 +1,186 @@
+# Maven :
+- typical process of building a software is as follows :
+	1] write a source code
+	2] place the source file at the right folder location(need to follow standard directory structure for business classes,test classes,resources)
+	3] compile 
+	4] running test cases[JUnit test cases ]
+	5] create java docs
+	6] deploye your artifact(.jar or .war) on server
+	7] run
+
+the above process is called as build process which is carried out through a build life cycle
+this is common requirement of any software development so we want to automate this process
+developer community realises this as solution to this apache software foundation has given as a solution in the form of tool
+know as maven
+
+what is maven ?
+1] it is a build tool 
+- it automate the build process by following a build life cycle 
+2] it is a dependancy management tool
+- it help java project to find there dependancy from maven central repository
+- it automatically finds and puts the dependancy in the class path 
+- it not only find direct dependancy but also transitive dependancies
+- this is the feature of maven because of which maven has become so popular
+- it is implemented by writing following tags in pom.xml
+<dependencies>
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>8.0.26</version>
+	</dependency>
+
+</dependencies>
+
+3]Project Management Tool :
+this feature can be used to give additional information about our project such as name of project url of project developer of project and so on 
+this can be use by organisation management though it is not popular feature of maven 
+
+# Scopes of dependencies
+- scope decide in which stage of build life cycle dependency would be available
+- there are following scopes 
+	1] compile : this is default scope of any dependency this would make dependency available from compile goal eg.
+	2] runtime : any dependency with this scope will be only available at runtime eg.database jar
+	3] test : any dependency with this scope will be only available at the time of running test cases eg.JUnit jar
+	4] provided : this scope dependency are expected to be provide by runtime enviroment such as web container eg.servlets jar
+	5] system : dependency with this scope would be searched from local file system.whicever path we have given while specifying the scope
+		    it is not recommended to use system scope as it hardcore the jars path 
+
+# 
+
+
+# POM [project object model]
+- maven build tool is configured using single configuration file know as pom.xml 
+- this file contains maven co-ordinates which is used to uniquely identity that maven project 
+- maven co-ordinate consist of following three things 
+	1] groupId : it tells a group of people develope this project 
+		     typically  it is unique to organization and hence it is organization domain name in reverse
+		     eg. in.co.volkswagen
+	
+	2] artifactId : it is project name which we are working on 
+			eg. emppayroll 
+	3] version : it refers to specific version of the project we are working on 
+		     eg. 1.0.0-RELEASE 
+	
+specifying 3 co-ordinates for any maven project is mandate for any maven project 
+- defult packaging in maven is .jar which means even if you don't specifying packaging it is considered as jar
+- if needed we can explicitely specified as follows :
+  <packaging>jar</packaging>
+
+
+# Directory Structure
+- maven create following directory struture 
+	1] src/main/java :- this directory should contain all business classes 
+	2] src/main/resources :- this directory should contain all resource files[audio,video,txt,pdf,docx,images] needed by business classes 
+	3] src/test/java :- this directory should contain all your test cases [JUnit classes]
+	4] src/test/resources :- this directory should contain all resource files[audio,video,txt,pdf,docx,images] needed by your test cases
+	5] target : this directory contains compiled bytecode and generated artifact 
+anything that you want to write in pom.xml must be written in project tag
+# Plugins 
+- any funcationality that you want to carry out in maven is carry out using maven  
+
+Setting the maven path on cammand promt
+
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_281
+
+set M2_HOME=C:\webApps\apache-maven-3.8.3-bin\apache-maven-3.8.3
+
+set PATH=%M2_HOME%\bin;%PATH%
+
+
+
+to fire any maven cammand through cammand promt you must be at root directory of the project(dir where pom.xml file is saved)
+otherwise you cannot execute any maven cammand 
+
+# Goals 
+- goal is used to do a specific task in eclipse
+	1] clean : this is used for deleting old artifact(this delete target directory)
+	2] compile :goal is used to compile business classes and creates target directory
+	3] package : create artifact (jar or war)
+	4] site : this used to generate a website we have filled in pom.xml
+	5] source :
+it is possible to execute multiple maven cammands together shows as follows
+- mvn clean compile package
+
+# Maven Repository
+- in maven terminology repository is a directory where all the jar plugins are store which can be used by same or different project later on
+- there are three types of repository in maven 
+	1] central repository : this is repository provided by maven community and it contains large number of commonly used libraries
+				any maven project first time ran on any computer would download all the dependecy from maven central repository
+				
+	2] local repository : this repository is folder location on client machine created by maven when you run the maven for the first time
+			      by default maven creates a folder named .M2 
+			      location of this folder would always be C:/user/userlogin/.M2
+			      any dependancy would be downloaded only once when its needed and not available in local repository
+			      for all subsequence usage of any specific dependancy it would be searched in local repository first 
+	3] remote repository : this repository  is maintain by different organisation and this repository would contain jar files which are not open source 
+			       eg.oracle has its own repositories or you as an organisation can maintain repositories of their internal projects
+				this is done using remote repositories
+
+
+<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+
+
+Business Entity : entity and their field
+operation :
+
+take one simple method and improve 
+
+
+
+
+Ticket
+t id
+movie 
+seat
+price
+
+
+
+Movie 
+id
+name 
+
+Seat 
+row
+col num
+
+
+
+
+SELECT * FROM tbl_ticket t
+INNER JOIN tbl_movie m
+ON t.movie_id_fk=m.movie_id
+HAVING movie_name='Movie 1' AND rowName_fk='A' AND seatNumber_fk=1
+;
+
+
+
+stmt = con.prepareStatement(FIND_SEAT_AVAILABLE_SQL);
+			stmt.setString(1, movie.getMovieName());
+			stmt.setString(2, seatToBeBook.getRowName());
+			stmt.setInt(3,seatToBeBook.getSeatNo());
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				int ticket_id = rs.getInt(1);
+				String movieName = rs.getString(2);
+				String row = rs.getString(3);
+				int num = rs.getInt(4);
+				System.out.println(ticket_id + " " + movieName + " HELLO.... " + row + " " + num);
+				bookedTicket = new Ticket(rs.getInt(1), new Movie(rs.getString(2)), new Seat(rs.getString(3), rs.getInt(4)));
+			}
+
+
+
+SELECT t.rowName_fk,t.seatNumber_fk FROM tbl_ticket t INNER JOIN tbl_movie m ON t.movie_id_fk=m.movie_id
+SELECT count(movie_id_fk) FROM tbl_ticket WHERE  movie_id_fk=1 GROUP BY movie_id_fk 
+
+SELECT t.rowName_fk,t.seatNumber_fk, m.movie_name FROM tbl_ticket t INNER JOIN tbl_movie m ON t.movie_id_fk=m.movie_id HAVING movie_name='?'
+
+
+
+SELECT t.ticket_id,m.movie_name,t.rowName_fk,t.seatNumber_fk FROM tbl_ticket t INNER JOIN tbl_movie m ON t.movie_id_fk=m.movie_id

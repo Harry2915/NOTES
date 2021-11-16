@@ -1,0 +1,234 @@
+Persistence
+EntityManagerFactory
+EntityManager
+EntityTransection
+
+entityManager.persist(emp);
+17
+
+fn + brigtness
+
+p s ad au b
+
+Runtime.getRuntime.addShutdownHook(Thread hook)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ApplicationContext context= new  ClassPathXmlApplicationContext("SpringConfig.xml");
+Vehical vehical = (Vehical)context.getBean("vehical");
+
+
+
+setter injection and constructor injection
+-------------------
+spring.xml
+<bean id="vehical" class="in.co.vwits.Vehical">
+</bean>
+
+<bean id="vehical" class="in.co.vwits.Vehical">
+<property name="variable name" value="value of that variable">
+<constructor-arg index="1" value="Delta" />
+</bean>
+
+ApplicationContext context= new  ClassPathXmlApplicationContext("SpringConfig.xml");
+Vehical vehical = (Vehical)context.getBean("vehical");
+
+
+-----------
+annotation 
+
+
+ApplicationContext context= new  ClassPathXmlApplicationContext("SpringConfig.xml");
+Vehical vehical = (Vehical)context.getBean("className"); // decapitalize class name(car)
+
+@Component
+class Car
+{
+}
+
+
+in xml
+<contex:component-scan base-package="in.co.vwits">
+
+
+@Autowired 
+------------------------------------------------------------
+
+
+
+@Component :  replacement of bean // default name is pre qulified de capitalize name eg Student --> student 
+							special case StudentDatabase --> StudentDatabase
+@Autowired : search for the object itself
+@Qualifier : to match the name if we have more than one bean for perticular interface 
+@Scope : define the scope of bean "singletone" or "prototype"
+
+@Configuration : for define configuration file 
+@ComponentScan(basepackage="in.co.vwits")
+class springConfig 
+{
+}
+ApplicationContext context = AnnotationConfigApplicationContext(springConfig.class);
+
+
+
+
+
+
+
+
+bean lifcycle
+
+@PostConstruct : write on method which will execute after constructir and after injecting dependencies
+
+@PreDestroy : write on method which will execute before bean destroyed
+
+
+@RequestMapping("/url")
+
+to request same page
+
+@GetMapping("url")
+@ResponseBody()
+@Pathvariable("")
+
+
+
+
+@Entity
+@Table
+@id
+@Column(name="")
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+@Embeddable  : on class which we want to embed
+@ElementCollection  : on field where we want to embed
+@OneToOne
+@OneToMany
+@ManyToOne
+@ManyToMany
+
+
+
+.persist()
+.find()
+.merge()
+.remove()
+
+
+
+
+
+
+
+Online Banking
+bcrypt
+
+
+@JsonIgnoreProperties(ignoreUnknow=true)
+
+POST 	/api/customers
+GET  	/api/customers
+GET  	/api/customers/{customerid}
+PUT  	/api/customers/
+DELETE  /api/customers/{customerid}
+
+
+interface AlienRepo extends JpaRepository<User,Integer>{
+}
+data jpa
+
+findByVariableName()
+findByVariableNameOrderByAidDesc()
+findByVariableNameOrderByAid()
+
+token generation 
+
+stateless 
+
+maintain login
+
+
+
+packages
+bean
+repo
+service 
+controller
+
+
+
+
+
+
+
+
+
+First Add the HttpClientModule in app.module.ts
+then create one service and inject HttpClient object into the constructor
+then create method which will return the appropriate object 
+and call the api with the help of HttpClient object
+eg myHttp.get("http://localhost:8080/users/{id}") 
+and store the data in object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# database connection settings here ORACLE SPECIFIC
+
+#spring.datasource.url=jdbc:oracle:thin:@localhost:1521:OSE
+#spring.datasource.username=scott
+#spring.datasource.password=tiger
+#spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+#ORM settings
+#spring.jpa.generate-ddl=true
+#spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+#database connection settings here HSQL SPECIFIC
+
+spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+
+#ORM settings
+spring.jpa.generate-ddl=true
+spring.jpa.show-sql=true
+#spring.jpa.hibernate.ddl-auto=update
+
+
+#spring.mail.properties.mail.smtp.connecttimeout=50000
+#spri#ng.mail.properties.mail.smtp.timeout=30000
+#spring.mail.properties.mail.smtp.writetimeout=50000
+#spring.mail.host=smtp.office365.com
+#spring.mail.port=587
+#spring.mail.username=vishal@gmail.com
+#spring.mail.password=gmail token generated password from gmail settings
+#spring.mail.properties.mail.smtp.starttls.enable=true
+#spring.mail.properties.mail.smtp.auth=true
+
+

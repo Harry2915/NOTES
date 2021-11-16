@@ -1,0 +1,125 @@
+# Unit Testing 
+- It is type of software testing where indivisual units/ components of software are tested.
+- The purpose is to test that each unit of software perform as expected.
+- Unit testing is done during developement phase of an application by the developers.
+
+# Why Unit Testing?
+- it is important to find out the defects and fix them in the early stage of software developement which
+  saves lot of time and efforts if same bug would have been identified in later phase of software development
+  hence it saves lot of money too.
+-inorder to make this happen and your software is with minimal bugs the first and early testing is unit testing
+
+
+# How to do unit testing
+- it can be carried out mannually which needs lot of efforts and time if same test to be carried out for 
+  multiple times
+- inorder to avoid this you can automate the process of unit testing which can be done using tools such as JUnit 
+
+# JUnit
+- JUnit is a unit testing tool for java programmig language 
+- running test automatically(using build tool such as maven) helps to identify the bugs in the sofware due to changes in source code
+
+# JUnit Version Histroy 
+- current version of junit is 5 which is also called as JUnit jupiter.
+- JUnit 5 is complete new rewrite and different in architecture than its prior versions.
+- JUnit 5 Architecture
+- junit 5 consist of following three companent
+	1] Junit jupiter (API) : this is used by developers which consist of annotations classes enums
+	2] JUnit platform (Engine) : this is used by API internally to perform the task
+	3] JUnit vintage : this is used to run old(previous versions 3/4) JUnit test cases  
+	
+# Naming convention for JUnit Test class is as follows :
+- it should be kept in same package as business class which is under test
+- it's name should be same as the business class which is under test followed by "Test" keyword 
+	
+# JUnit Annotations :
+	1] @Test : a test class having any method annotated with @test will be considered as test method
+		   this method would be automatically executed 
+		   this method would contain unit testing logic for specific unit of software 
+		   typically following naming convention is used for test methods
+			1] method name should start with test
+			2] followed by long and explainatory name telling what that test case is doing 
+
+	2] @DisplayName("String") : declare a custom display name for the test class and/or test method
+
+	3] @Disabled : this is used to disable a test class and/or test method 
+
+	4] @BeforeEach : any method annotated with this will be executed before each test method 
+
+	5] @AfterEach : any method annotated with this will be executed after each test method 
+
+	6] @Timeout(value = 5,unit=TimeUnit.SECONDS) : any test method annotated with this annotation would fail if its execution exceeds given duration
+	
+	7] @ParameterizedTest : any test method annotated with this annotation denotes that this method should accept parameter
+	
+	8] @ValueSource : this annotation is used for test method which are annotedwith @ParameterizedTest value soruce can give different type parameterized source such as strings int byte floats,doubles...etc
+			 
+	9] @CsvSource : is used to pass parameter to parameterized test and  each parameter is seperated by comma 
+	
+	to use above three annotation you must have JUnit params dependencies
+
+	10] @RepeatedTest(int) : method annotated with annotation would run repeatedly for specified number of times 
+
+ 
+follwoing annotations are used for conditional test execution :	
+
+	11] @EnabledOnJre(value=JRE.JAVA_11) : any method annotated with this annotation would be enable only if project jre version matches with given jre version
+ 	
+	12] @EnabledForJreRange(min=JRE.JAVA_8,max=JRE.JAVA_10) : any test method annotated with this annotation would be enable for given range of JRE 
+
+	13] @EnabledOnOs(OS.WINDOWS) : any test method annotated with this annotation would run if project running on OS as given in annotation
+
+	14] @DisabledOnJre(value=JRE.JAVA_11) : any method annotated with this annotation would be disabled only if project jre version matches with given jre version
+ 	
+	15] @DisabledForJreRange(min=JRE.JAVA_8,max=JRE.JAVA_10) : any test method annotated with this annotation would be disabled for given range of JRE 
+
+	16] @DisabledOnOs(OS.WINDOWS) : any test method annotated with this annotation would not run if project running on OS as given in annotation
+
+
+# TDD [Test Driven Development]
+- TDD is a practice of writting test for a piece of required functionality before** writing any implementation code
+- the idea of TDD is to write a new test case which fails first then you write the code to get it pass 
+  it doesn't have to be must code to get it to be passed 
+- once it passed you can refactor the code  
+- repeat steps 1,2,3. 
+
+Benefits of TDD :
+- it reduces a bug 
+- it gives you immediate feedback
+- at any moment of time your code is deployable
+
+# Mocking 
+//This is a stub implementation of dao and we are forced to write this because we want to do unit testing of service layer and we are
+//force to do unit testing when either dao implementation is not ready or it is done by some other team
+//and you don't have access while implementing unit testing.
+//Implementing Stub is a time consuming job.
+//As this is the common situation software development where different teams are working on different layer of the application
+// it is also possible in software development you are using third party API payment gateway service which is not accessible to you during unit testing 
+//developer community have realise these problem and come up with a solution called as "mocking".
+
+# How To Mock 
+- there are servral tools which can hepl you mocking one of the most popular mocking framework is "Mockito"
+- writing JUnit test cases with mockito typically has following algorithm
+	1] given
+	2] when
+	3] then
+
+- Mockito class has lot of static utility method such as when(),verify(),times(),never(),atLeast() and so on
+- while writing test cases you will be using these methods lot of time hence typically static import is done and these method are directly use within a test method 
+
+
+ 
+
+SELECT j.rowName_fk,j.seatNumber_fk FROM jtbl_movie_seat j LEFT JOIN tbl_ticket t ON j.rowName_fk = t.rowName_fk AND j.seatNumber_fk =t.seatNumber_fk WHERE T.rowName_fk IS NULL
+
+SELECT j.rowName_fk,j.seatNumber_fk FROM jtbl_movie_seat j LEFT JOIN tbl_ticket t ON j.rowName_fk = t.rowName_fk AND j.seatNumber_fk =t.seatNumber_fk WHERE t.rowName_fk IS NULL AND j.movie_id_fk=?
+
+
+
+SELECT t.rowName_fk,t.seatNumber_fk, m.movie_name FROM tbl_ticket t INNER JOIN tbl_movie m ON t.movie_id_fk=m.movie_id where movie_name=? AND t.status='booked';
+WHERE status='booked'
+
+
+SELECT j.rowName_fk,j.seatNumber_fk FROM jtbl_movie_seat j LEFT JOIN tbl_ticket t ON j.rowName_fk = t.rowName_fk AND j.seatNumber_fk =t.seatNumber_fk WHERE j.movie_id_fk=? AND t.rowName_fk IS NULL OR t.status='cancelled'
+
+UPDATE tbl_ticket SET status = 'cancelled' WHERE ticket_id = ?;

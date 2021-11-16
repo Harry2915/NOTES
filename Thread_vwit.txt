@@ -1,0 +1,178 @@
+# Multithreading
+- Thread smallest unit of work within a process
+- independent path of execution within a process
+- multithreading is used for :
+	1] for better user experience [for not blocking the GUI]
+	2] for execute long running tasks in background
+	3] in gaming application
+	4] in web application to handle multiple request for multiple user
+- java support multithreading as follows : 
+	1] extending Thread class [in java.lang]
+	2] implementing Runnable interface [in java.lang]
+- steps to create custom thread by extending Thread class
+	1] create a custom class 
+	2] extends it from thread class 
+	3] override public void run method
+	4] create the object of custom class  
+	5] on that object call start method
+NOTE : as far as multithreading concerns execution of threads is completely under the control of
+	underlying implementation of thread sheduler so we can't guarantee following things :
+		1] which thread will start executing
+		2] for how long that thread will executing
+		3] sequence of execution of thread
+
+# Methods of java.lang.Thread class
+	1] public void start() :- this method is responsible for calling run method internally
+	2] public String getName() :- this return name of thread
+	3] public void setName(String name) :- assign name to the thread
+	4] public boolean isAlive() :- returns a boolean value which tells a thread is alive or not
+					thread is consider alive in ready to run stage, running stage, waiting stage
+					in born stage thread is not consider as alive
+	5] public int getPriority() :- returns priority of thread
+					there are three priority of thread :
+					1.MIN_PRIORITY : 1
+						any thread with this priority could be given last perference
+					2.MAX_PRIORITY : 10 
+						any thread with this priority could be given highest perference
+					3.NORM_PRIORITY : 5
+						by default priority for every thread
+
+	6] public void setPriority(int priority) :- assigns new priority to thread
+	7] public static void sleep(long milisec) throws InterruptedException :- this method put current executing thread to sleep for specified no of miliseconds 
+	8] public static Thread currentThread() :- returns refernce to current executing thread
+	9] public void interrupt() :- internally it will make isInterrupted flag true and when we call isInterrupted method it will return that variable
+	10] public static boolean isInterrupted() :- this returns true if current executing thread is intrrupted otherwise it return false
+						     it is good practice to frequently check in run method long running thread if it was interrepted
+	11] public static void yield() :- this method tells scheduler that current executing thread is willing to yeild it's current use of processor
+					  
+# constructor of thread class :
+	1] Thread() :- this is no argument constructor 
+	2] Thread(Runnable targetRunnable):- 
+	3] Thread(String name)
+	4] Thread(Runnable targetRunnable,String name)
+
+-When multiple threads are running context switch will happen and threads will 
+move from “ready to run” to “Running “ and “Running” to “Ready to run”
+Individual execution of every thread is in sequence
+Every thread has it’s own stack of execution.
+Every thread which is started  will execute for sure.
+
+- steps to create custom thread by implementing Runnable interface
+	1] create a custom class 
+	2] implement it from Runnable interface
+	3] override public void run method
+	4] create the object of custom class   
+	5] create object of Thread class
+	6] pass Runnable object to Thread constructor while creating Thread object
+	7] calll start method on Thread object
+-there are two threads by default created in java main and garbage collector
+
+Race Condition :
+- when multiple thread are trying to access same resource at the same time Race Condition occures
+- which leads to data inconsistancy which is bad situation.
+- this should never ever happen
+EXAMPLE 
+- joint bank accounts
+- IRCTC	   
+
+# Synchronization :
+- to avoid the problem occured beacause of race condition we have to use the concept of synchronization
+	1] every object in java comes up with a lock and that lock is mutually exclusive
+	   which means only one current executing thread can be owner of that lock 
+	2] objects lock become active only if class has/ object has atleast one synchronization method 
+	   or synchronized block within a method 
+	3] any thread which executes synchronization method on any object is said to be "owner of the lock" or
+	   "owner of monitor"
+	4] till the time thread is executing that synchronized method thread would be holding that lock and no other thread is allowed to access
+	   that resource [object's] any of synchronized method.
+	5] it is possible to access non-synchronized methods of any resource by multiple thread at a time
+	6] it is possible to access non-synchronized methods by one thread and synchronize method by other thread at a time
+	7] if thread goes to sleep it holds any lock it has-it doesn't release the lock*
+
+
+# Interthread Communication 
+- to perform interthread communication java gives you following three method in java.lang.Object class
+	1] wait()
+	- wait() method puts a thread in a wait stage of its life 
+	- wait() method releases a lock 
+	- wait() method throws java.lang.InterruptedException;
+	- thread calling wait() method will move to wait stage and as no way of unblocking itself
+	Signature of wait() : 
+
+			 public final native void wait(long) throws java.lang.InterruptedException;
+			 public final void wait(long, int) throws java.lang.InterruptedException;
+			 public final void wait() throws java.lang.InterruptedException;
+	
+	2]notify(); :- thread calling notify 1.releases a lock 2.and notification is send to other[only one and any one] thread which was waiting for this resource to be free/available
+			
+	3]notifyAll(); :-  thread calling notify 1.releases a lock 2.and notification is send to all threads which were waiting for this resource to be free/available
+			   and then one thread will be picked up and give chance to pick up
+		
+
+- wait notify notifyAll this all releases a lock so any thread calling this method must be owner of monitor 
+- if it is not the case  then - "java.lang.IllegalMonitorStateException" is thrown
+- [ this three method must be called in synchronized block ]
+
+#Concurrency API 
+- this API is new modern approach dealing with multi-threading
+- this API is available in java.util.concurrent package
+- this API was added in java version 5
+- it is strongly recommended to use this API over traditional low level multithreading API as it gives you some advance feature over traditional API
+- it also gives some solution ready made so that developers life become easy
+
+# Lock Interface :
+- this is replacement of synchronization
+- locking and unlocking can be done in any order
+- lock can be applied explicitly
+- this gives you additional functionality to check if lock is acquire or not. 
+- if not then we can give some alternative path of execution so that program won't be block 
+Lock l=new ReentrantLock(true); // when we pass parameter as true fair lock is enabled and by default it is disabled 
+
+# Important method of Lock interface :
+	1] public void lock() : this method acquire the lock.this method lock until lock is available so need to used very carefully 
+	2] public boolean tryLock() : acquire the locks only if it is available at the time of this method invocation 
+				      otherwise this method returns so this is not a blocking call.
+				      return true if lock is acquire else return false
+	3] public boolean tryLock(Long time,TimeUnit unit) throws InterruptedException : this method tries to acquire the lock if it is available at the time of invocation
+											 if not it waits for given amount of time unit and then return. 
+											 return true if lock is acquire else return false
+	4] public void unlock() : release a lock
+NOTE :
+- you need to be careful to use try finally block to release a lock 
+
+await()
+signal()
+signalAll()
+
+# PriorityQueue
+- this is class from java.util package
+- allows you to add and remove element based on priority
+- poll() method returns the value of first element in the queue and removes the element from queue
+- offer method adds the element in the queue
+
+
+# Executor Framework[java's threadpool]
+- idea of threadpool is to create fix number of threads already in memory even before any 
+  client comes and request so that we can save time of thread creation and destruction
+  this is how perfromance is improved
+- in java thread pool is implemented using executor available in java.util.concurrent package
+- following API's(claases and interfaces) are used for creating a thread pool 
+	1] Executors : this is a class in java.lang.concurrent package 
+			this class has static factory methods for returning object of ExecutorService
+	2] ExecutorService :it is an interface available in java.lang.concurrent package
+				this interface is implemented by java ThreadPool class and it has different methods for submiting task to thread in threadpool and 
+				terminating a threadpool
+NOTE :
+- this technique exactly used by java web containers [eg.tomcat] while handling multiple client request in java web application
+
+# Problems with runable :
+- run method can't propogate any exception 
+- run method can't return any value 
+- you can't set the timeout
+- to overcome this drawback java.util.concurrent package has one interface called as Callable 
+
+
+f6 - next line 
+f8 - next debug point
+ctrl+shift+I : shows current value 
+

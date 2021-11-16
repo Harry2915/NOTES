@@ -1,0 +1,88 @@
+#JDBC
+stands for java database connectivity
+its an java API to connect and execute queries against any[Mysql,Oracle,sql server] database
+it is a part of java.sql package
+jdbc has its own architecture
+
+#Driver
+is program that convert JDBC calls to vendor specific database call
+driver is given by vendor itself
+driver is a software a piece of program which may contain more than one class files
+
+steps needs to be followed to talk to database using JDBC
+1] load the driver
+2] obtain connection
+3] create the statement
+4] fire the query
+5] fetch the result
+6] display result
+7] close the resources
+
+It is strongly recommanded to use PreparedStatement over Statement
+PreparedStatement support "?" placeholder.
+PreparedStatement give security for sql injection attack.
+PreparedStatement is a subinterface of Statement interface. (PreparedStatement extends Statement)
+
+Types of Result Set :
+there are three type of resultset
+1] TYPE_FORWARD_ONLY :- this is default type of resultset which can move the cursor only in the forward direction
+
+2] TYPE_SCROLL_INSENSITIVE :- this can move the cursor in any direction forward as well as backword
+			      any changes made to the database won't be reflected by this type when 
+			      result set is open 
+
+3] TYPE_SCROLL_SENSITIVE :- this can move the cursor in any direction forward as well as backword
+			      any changes made to the database will be reflected by this type when 
+			      result set is open
+
+# concurrency of result
+there are two option for result set concurrency 
+1] CONCUR_READ_ONLY :- this is default concurrency value for resultset
+		       any open resultset is read only and cannot be modified or change programmatically
+
+2] CONCUR_UPDATABLE :- this resultset can be modified programmatically
+
+# Inner Classes :
+- inner class .class file created as outerclassname$innerclassname 
+- inner class share a specific relationship with outerclass which allows innerclass to access private 
+  member of outer class directly 
+- inner class can contains its own instance variable and method 
+- outer class can't access any member of inner class directly
+- to create a object of inner class you must have object of outer class
+syntax of creating object of inner class
+		InnerClass ic=c.new InnerClass(); // it will work only inside outerclass
+		OuterClass.InnerClass ic=c.new InnerClass();
+
+# static nested classes
+- static nested class .class file created as outerclassname$staticnestedclassname 
+- static nested classes cannot access non-static member of outerclass
+- static nested can contains its own instance variable and method 
+- to create object of static nested class we dont need object of outer class
+syntax of creating object of static nested class :
+StaticNeastedClass snc = new StaticNeastedClass();// it will work only inside outerclass
+OuterClass.StaticNeastedClass snc = new OuterClass.StaticNeastedClass();
+
+# Reflection
+- it is feature of java programming 
+- which make it possible to inspect[to find information] classes,inteface,methods,fields at runtime
+- it is also possible to create object,invoke methods using reflection API 
+- reflection API is present in java.lang.reflect package.
+
+# MVC model view Controller
+
+it is a design pattern used while developing java application.
+this helps you to create layerd application where each layer is responsible for one single responsibility
+M : stands for model 
+responsible for business logic of our application
+V : view 
+responsible for presentation logic of our application[how application should look like/represented to end user/client]
+C : controller
+responsibile for managing control flow of our application
+
+communication between V and M is done through C
+in other words model and view should never ever interact with each other.
+
+ResultSetMetaData rsm = rs.getMetaData();
+System.out.println(rsm.getColumnName(1));
+System.out.println(rsm.getColumnName(2));
+sandeep.chatuphale@gmail.com

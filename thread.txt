@@ -1,0 +1,214 @@
+							Multithreading
+						===================================
+
+Thread : 
+smallest unit of work within a process
+
+1) Multitasking :       Perfotming more then one task at a time / simelteneiously 
+
+Defining a Thread
+====================================
+
+1) By Extending Thread Class
+
+2) By Implimenting Runnable Interface 
+
+=====================================
+
+1)  By Extending Thread Class
+EX : 
+	package com.programs;
+
+class MyThread extends Thread{
+	// To Execute run() is a task of Child Thread
+	public void run() {		
+		for(int i = 1 ; i <= 3; i++) {
+			System.out.println("Child Thread -" + i);
+		}
+	}	
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		MyThread t = new MyThread();
+		t.start();
+		// To Execute This For Is a Task Of Main Thread
+		for(int i = 1 ; i <= 3; i++) {
+			System.out.println("Main Thread -" + i);
+		}
+
+	}
+
+}
+
+
+
+Case 1: 
+	=> thread Scedular : It is part of JVM which is responsible To Give chance To Thread which are In Wating state for the execution 
+			  by using Algorithm.
+
+			as we don't know which algorithm is used by Threadscedular we can not expect the exact output of above Program 
+			it varies JVM To JVM
+
+case : 2
+	=> diffrence between t.start() and t.run() :
+		t.start() : in this case thread class start() method get executed and new thread is registered to thread scedular 
+			    and it treats as multithreaded application 
+
+		t.run() : in this case overriden run() method of child class get called by main thread in which new thread is not created it treated as 
+				single threaded application 
+
+Case 3: Importance of Thread class start() method : 
+	1) it is responsible to create a new thread and register to threadschedular 
+	2) It performs some recommended Execution Steps 
+	3) it invokes/calls the child class run() method 
+
+
+Case 4: Overloading of run() method in Child : 
+	Overloading of run() is possible in Child but in this case Thread class start() method regiter a new thread and  
+	always calls no argument / default parameterized run() method of child class
+
+Case 5 : overriding of start() method : 
+
+		It is possible to override thread class start() method into child but in this case new thread is not created overridden start() method of child 
+		class get executed and it is treated as single thread application 
+
+Case 6: if run() method not override in child class : 
+	In this case Thread class start() method register new Thread and calls run() method of Thread class which has empty implimentation 
+	so it doesn't print any out put on console 
+
+                     // EX: Thread Class run Method
+			public void run(){
+			
+			}
+NOTE : It is Not Recommended , It is mendetory To Override run() of Thread class In To Child 
+	if not then Don't Go For Multithreading there is no any use 
+
+Case 7: Thread Life Cycle : 
+
+Case 8: Starting Same Thread Again : 
+	                        if same thread get started again then it leads to IlligalThreadStateException It is not recommended 
+
+
+
+
+	
+===> Preventing Execution Of Thread 
+=====================================
+1) yield() : it is used stop the execution of current thread and give the chance to another waiting thread of highest priority 
+	     if there is no any thread which has higest priority then Thread scedular is responsible To give the chance for execution To the Threads 
+	     when yielded thread get chance it totally depend on Thread Schedular 
+           
+           Method Signature :
+		public static native void yield();		
+
+2) join() : It is used To Stop The execution of Current Thread Untill other Thread Does Not complete It's Execution 
+
+Ex : Signature of Join() :
+                      public final synchronized void join(long) throws java.lang.InterruptedException;
+ 		      public final synchronized void join(long, int) throws java.lang.InterruptedException;
+                      public final void join() throws java.lang.InterruptedException;
+
+3) sleep() : causes current execution of thread stops the execution(temporiraly) for a specified time in milisecond
+
+Ex : Signature of sleep() :
+			public static native void sleep(long) throws java.lang.InterruptedException;
+			public static void sleep(long, int) throws java.lang.InterruptedException;
+
+==================================
+==> InterThread Communication 
+==================================
+1) wait() : 
+	   It Causes Stop the Execution Of Current Thread And It Enters In Wating State For The Notification, once It notify It starts The Execution 	 
+	
+		Signature Of wait() : 
+
+			 public final native void wait(long) throws java.lang.InterruptedException;
+			 public final void wait(long, int) throws java.lang.InterruptedException;
+			 public final void wait() throws java.lang.InterruptedException;	
+
+2) notify() : this is used To notify a Single Thread Which is In Wating State 
+	Signature : 
+		 public final native void notify();
+
+3) notifyAll() : this is used To notify All the Threads at a time Which is In Wating State
+	Signature : 
+		public final native void notifyAll();	
+	
+
+
+NOTE : All Above Methods belongs To java.lang.Object class
+Note : These All Methods Get Used/work In Syncronized Block Only Otherwise We Will Get java.lang.IllegalMonitorStateException Exception  
+
+
+
+==> Syncronization : It is Used To solve Data Inconsistancy Problem . For that We have To Use synchronized keword in java 
+
+==> If Thread Wants To Execute The syncronized method then that thread must place the lock on object until its own execution does not finish 
+	after complition of execution it get released the placed lock on object so other thread which are in wating starts the execution of method 
+
+
+
+= > Deadlock :    (Lock Withaout key)
+
+		= > threads are waiting for each other for infinite time this is a deadlock situation 
+		= > syncronized keyword is not resolver for deadlock , it is actually a creator for a deadlock 
+		= > there is no any technic to solve deadlock but we can prevent it by using synchronized keyword properly  
+
+ 
+=> Starvation => Thread has long waiting but that waiting has End  	
+
+================================================================================================================================
+
+1) multitasking
+
+2) Types of Multitasking 
+	1) process based multitasking 
+	2) Thread based multitasking 
+
+3) Thread priority 
+	1) MIN_PRIORITY => 1
+	2) NORM_PRIORITY => 5 (By default priority for every thread)
+	3) MAX_PRIORITY => 10
+  
+4) getting and setting thread
+5) Preventing Execution of Thread 
+
+	1) yeild()
+	2) join()
+	3) sleep()
+6) interthread Communication 
+
+	1) wait()
+	2) notify()
+	3) notifyAll()
+
+7) Syncronization :
+
+8) Deadlock
+
+9) starvation 
+	
+
+
+
+ 
+
+
+
+	
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+	

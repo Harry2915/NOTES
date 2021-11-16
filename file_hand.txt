@@ -1,0 +1,152 @@
+1) what is mean by exception?
+2) Types of exception? 
+3) checked and unckeked exceptions?
+4) throw and throws?
+5) How to handel Exceptions?
+6) can we write try with multiple catch?
+7) what is final , finally and finalize() ?
+		
+	ANS : Final : It is a keyword which is applicable on class,varaible as well as method level
+			1) if class is final we can not inherit that class
+			2) if variable is final we can not reassign value of variable
+			3) if method is final we can not override that method 
+
+	      Finally : It is a block which is associated whith try , it is used to perform cleaning operations related to try block
+	
+	      finalize() : It is method used by garbage collector to perform clean up operations related to unused objects in memory
+
+
+User Defined Exceptions:
+	Exception which is defined by programmer it self to fulfill the application requirement that is called User defined exception 	
+
+Note : class must be extends the Exception/RunTimeException Class	
+
+class Demo extends RunTimeException{
+	public Demo(String s){
+		super(s);
+	}
+}
+	     
+=====================================================================================
+					FILE HANDLING
+=====================================================================================
+
+==> File It Is Used To Store Data Permenantly on secondary memory 
+
+==> if we want to store huge amount of data then databse is used and if we want to store small amount of data the go for FILE Concept
+
+==> data stored in file is unstructured 
+==> Data stored in file is not secured 
+==> It is difficult to perform operations on data stored in file 
+
+========== Content =============
+1) File
+2) FileWriter
+3) FileReader
+4) BufferedWriter
+5) BufferedReader
+6) PrintWriter
+
+		Note: These All Classes Belongs To Java.io.* Package
+==========================
+
+File ==> If we want to create File In Current working Directory we have create the object Of File Class
+	NOTE : File Object Is Not Capable To Create Physical File In Current Working Directory 
+		1) if file is allready available then file object pointer points to the file named with Demo.txt
+		2) if file is not available then file object pointer is ready to point to the file Demo.txt after creation 
+
+===> By using File Object We Can Represent Directory as well as File 
+
+
+Constrouctors In File Class
+=====================================
+1) File f = new File(String name)
+2) File f1 = new File(String subdir, String name);
+3) File f2 = File(File f, String name); 
+
+
+Functions: 
+	1) boolean exists();
+	2) boolean createNewFile()
+	3) boolean mkdir()
+        4) boolean isFile() : it returns true if file object pointing to the physical file 
+	5) boolean isDirectory() : it returns if file object pointing to the Directory 
+	6) String[] list() : returns list of all files and directory names present in specified directory
+	7) long length() : returns number of charecters present in specified file
+
+
+==> write a program to print all file and directory names available in c:\\Windows
+
+=========================================================
+
+2) FileWriter : Using FileWriter Object We can write The Charecter Data (Text Data) To The File 
+
+Constructors : 
+	
+	1) FileWriter fw = new FileWriter(String name);
+	2) FileWriter fw1 = new FileWriter(File f);
+
+		Note : These Two Constructors Are Ment for Overriding Existing Data 
+
+	If We want To Append Data then we have To use Follwing Two Constructors 
+
+	1) FileWriter fw = new FileWriter(String name,boolean append);
+	2) FileWriter fw1 = new FileWriter(File f,boolean append);
+
+NOTE: By using above all Constructors if Specified File Is Not available then all above constructors will create that file
+
+NOTE : The problem With the FileWriter Is We Have To insert Line Seprator("\n") Manually, Which is varied System To System, It is Very Difficult for the programmer
+	This Lowest Level Writer 
+
+Functions : 
+	1) write(int ch);
+	2) write(char[] ch)
+	3) write(String ch)
+	4) flush() : To give the gauarante that total data including last charecter written properly to the file 
+	5) close()
+
+=================================
+3) FileReader : Using FileReader Object We Can Read Charecter Data(text Data) From The File
+
+	Constructors : 
+		1) FileReader fr = new FileReader(String name);
+		2) FileReader fr1 = new FileReader(File f);
+
+	Method : 
+		1) int read() : 
+				1) It attempts To Read Next Charecter From The File And Return It's Unicode Value
+				2) If There Is No next Charecter Available it will get return -1 
+				3) As This method return unicode Value Compulsory at the time of printing we should perform typecasting 
+
+ Note : It Reades The Data From File Charecter By Charecter which is not convinent for the programmer 
+NOTE : FileReader Is Lowest Level Reader
+
+===============================================
+
+ ==> To Overcome The Problems With FileWriter And FileReader We Have To Use BufferedWriter And BufferedReader Classes 
+
+4) BufferedWriter : Using BufferedWriter Object We can write The Charecter Data (Text Data) To The File 
+
+	Constructors : 
+		1) BufferedWriter bw = new BufferedWriter(Writer w)
+		2) BufferedWriter bw = new BufferedWriter(Writer w,int buffersize)
+   NOTE :  BufferedWriter Can't Communicate Directly with File , It Communicates via some other Writer Object 
+==============================================================================
+
+5) BufferedReader : To Read Charecter Data / Text Data From File 
+
+	Constructor : 
+		1) BufferedReader bw = new BufferedReader(Reader r)
+
+		
+
+
+
+
+
+
+
+
+
+
+ 		

@@ -1,0 +1,213 @@
+# Lambda
+- this was introduced in jdk 1.8 
+- this feature has changed paradigmed programming in java world 
+- this was introduced to support functional programming 
+- this is one of the most important and popular feature after 1.8  all modern development is done using this feature 
+  also all new version of all the framework uses this feature (spring version 5.0 and above is implemented using jdk 1.8)
+
+# what are lambdas?
+- lambda expression are anonymous function
+- they don't have any name or identifires
+- they can be passes as parameters to another function
+- lambda expression exist outside any object scope 
+
+# Why lambda 
+1] enable functional programming
+2] enable support for parallel processing
+3] higher efficiency by optimum utilization of multicore processor
+4] helps you to write readable and concise code 
+
+# how lambda Looks?
+	1] ()-> { statement/statements };
+	2] ()-> statement
+	3] (parameter)-> statement // if you are specifying data type then writing () is mandate 
+	4] parameter-> statement // (parameter)-> statement
+	5] parameter ->{return "hello";}
+	6] parameter ->"hello"; // if you are not specifying {] then you must not specify return statement
+
+
+
+# functional interface 
+- is any interface which has only one abstract method 
+- this term was introduce in jdk 1.8 
+- you can use only functional interfaces to create lambda expression
+- you can optionaly anotate functional interface with @FunctionalInterface
+- though it is not mandate to anotate with functional interface but it is recommended as it would catch the errors at interface design time 
+  which would avoid run time issues 
+
+ # Type Inference 
+type inference is done by java compiler to identify the data type of argument and return value in lambda expression
+
+# java.util.function
+- this package was introduce in jdk 1.8 which contains prebuild functional interfaces 
+- most of the functional interfaces accepts and return generics type
+- functional interfaces in this package can be broadly divided into four category as follows :
+			Parameters	Return Value
+	1] Consumer : 	Y		N
+	2] Supplier :	N		Y
+	3] Function :	Y		Y
+	4] predicate : 	Y		Boolean
+
+if we want to accept two parameter then we have to use biFunctional interface
+
+functional interfaces from this package is used by lot of prebuild java API also newer version of java framework 
+
+# Optional Class
+- it is added in jdk 1.8 
+- it is in java.util package 
+- in java application its common to have null pointer exception
+- null's check in java program are often overlooked by developer causing serious bugs in the code
+- to avoid this jdk 1.8 has given us this class 
+- it is container which may or maynot contain not null value 
+- if value is present isPresent() method returns true, then you can call get() method which return actual value 
+- additional methods are given if value is not present then we can either return default value or can throw an exception
+- new versions spring data JPA uses exact this technique as it is recommended  
+
+# Java Stream
+- introduced in java 1.8 stream API is used for processing collection of object 
+- stream is not a datastructure instead it takes data from Collection or Arrays 
+- stream dont change the original data structure they only provide the result as per pipelined methods(recursive method call)
+- 
+- 
+
+Following are typical steps followed while working with streams 
+	1] create the stream
+	2] process the stream
+	3] consume the stream
+
+there are two types of operation possible on stream
+1] intermediate operation : intermediate operation is executed and returns a stream as a result hence various intermediate results can be pipelined
+2] terminal operation : mark the end of stream and return the result
+
+# Method Reference :
+- general syntax : referenceName:: methodName 
+ method reference is a short form of writing lambda expression
+ it is possible to use method reference instead of lambda only if you know 
+	1] lambda expression is accepting exact same number of argument which method we are trying te refer accepts 
+	2] and we don't accept any processing in lambda
+
+
+# Stream Operation
+
+1] filter() : returns a stream consisting of elements of the stream that match the given predicates
+	      this is the intermediate operation
+2] forEach() : utility function to iterate over a collection 
+3] count() : returns the count of elements in the stream,this is terminal operation
+4] distinct() : returns a stream consist of distinct element in a stream,this is intermediate operation
+5] map() : this is use to perfrom operation(by applying the given function) on each element and return a stream , this is intermediate operation
+6] reduce() : this is use to reduce stream of element to single value
+	     example of reduce are count,max,min
+
+# Concurrent Collection
+- using iteration we can travel over the collection object iterator can be either fail pass or fail safe
+- fail pass iterator means they will throw concurrent modification exception if the collection is modified while iterating over it
+- all the Collection classes present in java.util package does'nt support concurrent operation on them 
+- concurrent modification exception would occur if there are any structural (meaning adding the element or removing the element) changes made in collection
+- this is internally implemented by keeping modification count 
+- if thread realises if there is change in modification count it throws concurrent modification exception
+
+- while working on collection in mutithreading envirement is not only difficult task but also can be error thrown can degrade the performance if threading not done properly
+- to solve this problem sun microsystem(now oracle) has given us a prebuild solution in jdk 1.5 using concurrent collection 
+- they are available in java.util.concurrent package
+
+# Hashtable
+- Hash table is a legacy class 
+- it is synchronized 
+
+#Vector
+- Hash table is a legacy class 
+- it is synchronized 
+- legacy structure were synchronize but they were affecting the performance as they did not allow 
+  even multiple read operation simultaniously
+
+- to solve this 2 problems of improving the performance and thread safty java 5 has given us new collection hirarchy know as concurrent collection
+- they are further divided into broadly three types of behaviour
+	1] copy on write 		
+	2] blocking queue 
+	3] concurrent collection
+
+copy on write  :
+- it exist for list and set
+- no locking for read operation
+- write operation create a new structure internally while that is happening any thread just want to read would be given access to previous structure 
+- after successfull write operation new structure would replace the old structure 
+- it support concurrent read operation is multiple thread can read structure cocurrently but only one write operation by one thread is possible at same time 
+- this behaviour support concurrent read operation but sequential write operation
+- removing using iterator is not possible 
+
+# When to use ?
+- when read operation are more than write operation and has small number of elements because every time you write a record 
+  new structure is created and data from the exisiting structure need to be copied to new structure and new data 
+- so to conclude more read and less write and small number of elements
+
+
+# CopyOnWriteArraySet :
+- it is exactly similar to CopyOnWriteArrayList except it allows you to add only unique element 
+
+#Queue : 
+- it support FIFO 
+- there are following non-concurrent implementation of queue
+	LinkedList
+	PriorityQueue 
+above two classes present in java.util package 
+
+#Stack:
+- it supports LIFO 
+- there is Stack class in java this is a legacy class and poorly implemented hence this should not be used so java support stack using 
+  using Deque 
+- deque support both stack and queue behaviour 
+
+# Blocking Queue :
+- sometime we need to transfer data between multiple thread 
+- blocking queue is shared collection that is used to exchange the data between two or more thread 
+- a typical use case is producer consumer model 
+- following are concurrent implementation of queue which are available in java.util.concurrent package 
+	1] ArrayBlockingQueue : its bounded queue element removed in the same order they were added a typical FIFO 
+	2] LinkedBlockingQueue : it can be bounded or unbounded
+	3] PriorityBlockingQueue : it is unbounded queue elements are added and remove based on priority bydefault its based on comparable
+	4] LinkedBlockingDeque : it is similar to linked blocking queue except it is double ended queue you can add and remove element from head and tail of the ququ
+
+	
+- these Queue are further divied into two types :
+	1] Bounded Queue : (queue is created with fix size and size is not increased if it is full) 
+	2] Unbounded Queue : (there is no limit on the size)
+
+	Method  			Purpose 			Explaination
+	add(obj) 			insert an object 		returns true if object is added throws an illegalStateException if queue is bounded and it is full
+	offer(obj)			insert an object 		return true if object is added return false if queue is bounded and full
+	offer(obj,2,TimeUnit.SECOND)	insert an object 		return true if object is added return false if object was not able to insert before time indicated by second and third paramteter
+	put(obj)			insert an object 		put is blocking call if queue is bounded and if it is full 
+	remove(obj)			remove an object 		return true if object was found is queue and removed otherwise return false 
+	peak()				retrives an object 		get the head element of queue without removing it return null if queue is empty
+	element()			retrives an object 		get the head element of queue without removing it throws NoSuchElementException if queue is empty
+	poll()				retrives and remove object	retrive and remove the first object in the queue return null if queue is empty	
+	poll(5,TimeUnit.SECONDS)	retrives and remove object	retrive and remove the first object in the queue it would wait for the amount of time specified and return null if queue is empty
+	take()				retrives and remove object 	retrive and remove the first object if available if queue is empty then take() is blocking call (wait for element to be add)
+
+# ConcurrentMap :
+- it is an interface introduced in jdk 1.5 
+- this interface is implemented by ConcurrentHashMap class 
+- ConcurrentHashMap is thread safe class but multiple thread can operate on a single object without any complication
+- ConcurrentHashMap  object is divided into multiple segment based on the value of concurrency level 
+- Default concurrency level is 16 
+- at a time any number of threads can perform retrival operation but for update operation thread must lock perticular segment in which thread wants to operate
+- this type of locking mechanism is called as segment locking 
+- because default concurrency level is 16 , 16 update operation possible at a time by multiple thread 
+
+	class name 		synchronized	locking mechanism 	number of threads can access	iterator	null values & keys 			when to use it 
+	HashMap			No		No			multiple			fail fast	1 null key and multiple null values 	single threaded enviroment
+
+	HashTable		Yes		Object level lock	1				fail fast 	no null key no null value 		it is legacy class not recommended to use 
+	
+	ConcurrentHashMap	Yes		Segment level lock	depends on concurrency level 	fail sage	no null key no null value		use in multithreaded envirement
+				(only write 				by default it is 16 
+				operation) 					
+
+	
+- in ConcurrentHashMap while storing a huge nummber of element share same hashcode while searching that would impact the 
+- perfromance becasue number of searches would increase 
+- after realising this problem oracle has improved internal implementation of ConcurrentHashMap in 1.8 and above by using the concept of red black tree 
+- if number of element in one node are more than treeify threshold automatically elements in that node will be stored using red black tree 
+- 
+	
+
