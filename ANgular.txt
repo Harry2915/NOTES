@@ -1,0 +1,80 @@
+///WHAT IS ANGULAR?
+A JavaScript framework that allows to create reactive single page application
+
+==================================================================================
+////Install typescript
+npm install -g typescript
+
+==================================================================================
+1.////Create new angular repo 
+ng new my-first-app --no-strict
+
+2.///change working dir to my-first-app
+
+3.////start server
+ng serve
+
+4.////go to ide and start
+
+==================================================================================
+////data binding
+<h1>{{ title }}</h1>
+
+////event binding
+< element (event) = function() >
+ <button [disabled] = 'choice' (click) = 'show()'>Click here</button> 
+ 
+////property binding
+<img [src]="itemImageUrl">
+
+==================================================================================
+////To add images 
+
+1. Add image to assets.
+2. image = '../assets/img.jpeg';
+3. <img [src] = 'image'/>
+
+==================================================================================
+////Dynamic button operations
+    <button disabled = '{{choice}}'>Click here</button>   //button will be always in disabled state bcoz {{}} reads string value one way data binding
+	<button [disabled] = 'choice'>Click here</button>     //button works according to boolean value
+    <button [disabled] = 'choice' (click) = 'show()'>Click here</button>    //to handel events use round brackets
+	
+==================================================================================	
+////To use bootstrap 
+
+METHOD1
+
+npm install bootstrap
+"node_modules/bootstrap/dist/css/bootstrap.min.css",
+add this in angular.json file in styles array
+
+METHOD2
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+add this to index.html
+
+==================================================================================
+////To generate new component
+ng g c bloglist
+i.e ANGULAR GENERATE COMPONENT NAMEOFCOMPONENT
+
+==================================================================================	
+////To generate new service
+ ng g s blog
+i.e ANGULAR GENERATE SERVICE NAMEOFSERVICE 
+	
+////TO IMPORT SOMETHING GOTO apps.module.ts 	
+	
+==================================================================================	
+////Directives	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

@@ -1,0 +1,66 @@
+@Value("${external.service.url}")   ///used to read values from external properties files
+
+@Primary  ///gives more priority to component...used for handling multiple beans
+Ex:- Sorting ->1 sort,2 Sort
+
+@Quilifier("name")  ///Another way of handling multiple beans
+
+@Scope("Type")    ///By default singleton
+1.prototype:-Opposite of singleton
+2.request:- New instance for new Http req
+3.session:- Instaance lasts throughout session
+
+@Component:-Generic component
+	@Repository:- relational Database
+	@Service:-Business logic
+	@Controller:-Controller in MVC pattern
+
+@SpringBootApplication:-Denotes that it is spring context file
+	It enables Autoconfiguration & componentScan.
+	run method returns ApplicationContext.
+
+==================================================================================	
+///To start application in debug mode add in properties:- 
+	logging.level.org.Springframework=debug
+
+==================================================================================
+//////JUnit test annotations
+
+@Before  //Executes before every @Test 
+@After   //Executes after @Test
+	
+@BeforeCLass  //Class Level must be static Executes before executing class
+@AfterClass  //Class Level must be static Executes after executing class
+
+==================================================================================
+///To restart server automatically use dependency spring boot devtools
+
+///IMPORTANT
+@Component is a class level annotation whereas @Bean is a method level annotation
+and name of the method serves as the bean name.
+@Component need not to be used with the @Configuration annotation 
+where as @Bean annotation has to be used within the class which is annotated with @Configuration.
+
+==================================================================================
+////SHORTCUTS
+
+alt + f5  update project
+
+ctrl + shift + R    search class
+
+ctrl + o serach methods
+
+ctrl + shift + o organise imports
+
+==================================================================================
+
+////JDBC in spring
+
+select * from table
+
+public List<Table> findAll();
+
+
+////To add H2 DB 
+
+spring.h2.console.enabled=true

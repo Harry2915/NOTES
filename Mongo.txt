@@ -1,0 +1,89 @@
+=================================================================
+DATABASE RELATED COMMANDS
+SHOW ALL DBS
+show dbs
+
+
+CREATE NEW OR SWITCH DB
+use dbName
+
+
+VIEW CURRENT DB
+db
+
+
+DELETE DB
+db.dropDatabase()
+
+=================================================================
+
+COLLECTIONS RELETED COMMANDS(TABLES)
+SHOW ALL COLLECTIONS
+show collections
+
+
+CREATE NEW COLLECTION
+db.createCollection('collectionName')
+
+
+DELETE COLLECTION
+db.collectionName.drop()
+
+=================================================================
+
+ROWS RELATED COMMANDS 
+SHOW ALL ROWS
+db.collectionName.find().pretty()
+
+
+SHOW 2 ROWS
+db.collectionName.find().pretty().limit(2)
+
+
+INSERT ONE ROW
+db.collectionName.insert({
+	'fname': 'Harish',
+	'lname': 'Hibare'
+})
+
+
+INSERT MANY ROWS
+db.collectionName.insertMany([{
+	'fname': 'Harish',
+	'lname': 'Hibare'
+},
+{
+	'fname': 'Harish',
+	'lname': 'Hibare'
+}
+
+])
+
+
+Search in MongoDb DATABASE
+db.collectionName.find*({fnmae:'Harish'})
+
+
+COUNT NUMBER OF ROWS IN OUTPUT
+db.collectionName.find().pretty().count()
+
+
+SORTING
+db.collectionName.find().sort({fnmae:1}).pretty()   ////1 for asc and -1 for desc
+
+
+FIND FIRST ROW MATCHING OBJECT
+db.collectionName.findOne({fname:'Harish'}).pretty()
+
+
+UPDATE A ROW
+db.collectionName.update({fname:'Harish'},
+{
+  'fname': 'HARISH',
+  'lname': 'HIBARE'
+  }
+)
+
+
+DELETE A ROW
+db.collectionName.remove({fnmae: 'HARISH'})
