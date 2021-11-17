@@ -1,0 +1,24 @@
+///SPRING
+
+alt + f5            update project
+
+ctrl + shift + R    search class
+
+ctrl + o            serach methods
+
+ctrl + shift + o    organise imports
+
+
+
+////VS CODE
+
+
+ctrl + p            Search file
+
+
+////To kill task on port
+
+netstat -ano | findstr : port number
+
+taskkill /F /PID typeyourPIDhere 
+

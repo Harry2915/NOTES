@@ -1,0 +1,91 @@
+SET USER NAME
+git config --global user.name name
+
+SET USER EMAIL
+git config --global user.email email
+
+INITIALIZE GIT REPOSITORY
+git init
+
+CHECK STATUS
+git status
+
+ADD TO STAGING MODE
+git add -A
+
+COMMIT
+git commit -m ""
+
+CREATE BLANK FILE
+touch filename
+
+RECOVER DATA FROM LAST CHECKOUT
+git checkout filename
+
+RECOVER ALL FILES
+git checkout -f
+
+CHECK COMMITS
+git log
+
+CHECK LAST FIVE COMMITS
+git log -p -5
+
+CHECK WHAT CHANGES ARE DONE
+git diff
+
+COMPARE STAGING AREA WITH LAST COMMIT
+git diff --staged
+
+CHANGE STAGING AREA WITH LAST COMMIT
+git checkout -f
+
+COMMIT FILE WITHOUT ADDING TO STAGING AREA
+git commit -a -m ""
+
+LIST ALL FILES
+ls
+
+REMOVE FILES
+git rm filename
+
+DELETE FILE FROM STAGING AREA
+git rm --cached filename
+
+USING SHORT STATUS
+git status -s
+ 
+IGNORE FILES
+touch -gitignore
+
+CREATE LOG FILES
+touch logfilename
+
+IGNORE ALL LOG FILES TO UPLOAD ON SERVER
+*.log
+
+IGNORE FOLDERS
+foldername/
+
+CREATE BRANCHES
+git branch branchname
+
+CHECK PARENT BRANCHES
+git branch
+
+SWITCH BRANCHES
+git checkout branchname
+
+MERGE CHANGED BRANCH WITH MASTER
+git merge branchname
+
+CREATE AND SWITCH TO NEW BRANCH
+git checkout -b branchname
+
+PUSH
+git push origin branchname
+
+STASH
+git stash
+
+git stash push
