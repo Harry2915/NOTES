@@ -89,6 +89,3 @@ STASH
 git stash
 
 git stash push
-
-UNDO LAST COMMIT
-git reset
